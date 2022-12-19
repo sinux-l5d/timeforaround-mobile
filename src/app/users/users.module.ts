@@ -6,6 +6,7 @@ import { UsersPage } from "./users.page";
 import { ExploreContainerComponentModule } from "../explore-container/explore-container.module";
 
 import { UsersPageRoutingModule } from "./users-routing.module";
+import { UserCardComponent } from "../components/user-card/user-card.component";
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { UsersPageRoutingModule } from "./users-routing.module";
     ExploreContainerComponentModule,
     UsersPageRoutingModule,
   ],
-  declarations: [UsersPage],
+  declarations: [UsersPage, UserCardComponent],
 })
 export class UsersPageModule {}

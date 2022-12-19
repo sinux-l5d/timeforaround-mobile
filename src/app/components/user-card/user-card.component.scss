@@ -1,0 +1,10 @@
+.ratio {
+  font-size: large;
+  font-weight: bold;
+  color: red;
+
+  &.good {
+    color: green;
+  }
+}
+

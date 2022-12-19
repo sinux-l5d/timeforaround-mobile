@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../services/api.service";
+import { tap } from "rxjs";
+import { ApiService, UserDto } from "../services/api.service";
 
 @Component({
   selector: "app-users",
@@ -7,11 +8,13 @@ import { ApiService } from "../services/api.service";
   styleUrls: ["users.page.scss"],
 })
 export class UsersPage implements OnInit {
+  protected users: UserDto[] = [];
+
   constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.api.getUserDetails("sinux").subscribe((user) => {
-      console.log("user: ", user);
+    this.api.getAllUsers().subscribe((users) => {
+      this.users = users;
     });
   }
 }

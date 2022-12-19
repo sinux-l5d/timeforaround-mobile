@@ -1,0 +1,12 @@
+<ion-card *ngIf="user">
+  <ion-card-header>
+    <ion-card-title>
+      {{ user.username }}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label>
+      <span class="ratio" [class.good]="isCompleted()">{{ user.roundsPaid }}/{{ user.roundsCount }}</span>
+    </ion-label>
+  </ion-card-content>
+</ion-card>
