@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { RoundAloneDto } from "src/app/services/api.service";
+import { RoundAloneDto, RoundDto } from "src/app/services/api.service";
 
 @Component({
   selector: "app-round-card",
@@ -8,10 +8,17 @@ import { RoundAloneDto } from "src/app/services/api.service";
 })
 export class RoundCardComponent implements OnInit {
   @Input()
-  round?: RoundAloneDto;
+  round?: RoundAloneDto | RoundDto;
 
   @Input()
   showUser: boolean = true;
+
+  // typescript type guard
+  protected hasUsername(
+    round: RoundAloneDto | RoundDto,
+  ): round is RoundAloneDto {
+    return (round as RoundAloneDto).username !== undefined;
+  }
 
   constructor() {}
 

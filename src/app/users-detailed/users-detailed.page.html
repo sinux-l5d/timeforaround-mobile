@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{user?.username}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="user" lines="none">
+    <ion-item *ngFor="let round of user.rounds">
+      <app-round-card [round]="round" [showUser]="false"></app-round-card>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

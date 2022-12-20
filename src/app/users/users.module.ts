@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from "../explore-container/explore-co
 
 import { UsersPageRoutingModule } from "./users-routing.module";
 import { UserCardComponent } from "../components/user-card/user-card.component";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { UserCardComponent } from "../components/user-card/user-card.component";
     FormsModule,
     ExploreContainerComponentModule,
     UsersPageRoutingModule,
+    ComponentsModule,
   ],
-  declarations: [UsersPage, UserCardComponent],
+  declarations: [UsersPage],
 })
 export class UsersPageModule {}

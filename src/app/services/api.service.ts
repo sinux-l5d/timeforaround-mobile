@@ -47,7 +47,12 @@ export class ApiService {
   }
 
   public getUserDetails(username: string) {
-    return this.get<UserDetailedDto>(`/users/${username}`);
+    return this.get<UserDetailedDto>(`/users/${username}`).pipe(
+      map((user) => {
+        user.rounds = this.defaultSortRounds(user.rounds);
+        return user;
+      }),
+    );
   }
 
   public getRoundOfUser(username: string, roundId: string) {
@@ -56,10 +61,12 @@ export class ApiService {
 
   public getAllRounds() {
     return this.get<RoundAloneDto[]>("/rounds").pipe(
-      map((rounds) =>
-        // Sort by newest first
-        rounds.sort((a, b) => b.occurredAt.getTime() - a.occurredAt.getTime())
-      ),
+      map((rounds) => this.defaultSortRounds(rounds)),
     );
+  }
+
+  private defaultSortRounds<T extends RoundAloneDto[] | RoundDto[]>(rounds: T) {
+    rounds.sort((a, b) => b.reportedAt.getTime() - a.reportedAt.getTime());
+    return rounds;
   }
 }

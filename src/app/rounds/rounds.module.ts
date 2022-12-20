@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from "../explore-container/explore-co
 
 import { RoundsPageRoutingModule } from "./rounds-routing.module";
 import { RoundCardComponent } from "../components/round-card/round-card.component";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { RoundCardComponent } from "../components/round-card/round-card.componen
     FormsModule,
     ExploreContainerComponentModule,
     RoundsPageRoutingModule,
+    ComponentsModule,
   ],
-  declarations: [RoundsPage, RoundCardComponent],
+  declarations: [RoundsPage],
 })
 export class RoundsPageModule {}

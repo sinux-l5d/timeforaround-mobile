@@ -1,4 +1,4 @@
-<ion-card *ngIf="user">
+<ion-card *ngIf="user" [routerLink]="[user.username]">
   <ion-card-header>
     <ion-card-title>
       {{ user.username }}

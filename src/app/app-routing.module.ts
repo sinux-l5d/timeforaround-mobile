@@ -4,6 +4,13 @@ import { AppComponent } from "./app.component";
 
 const routes: Routes = [
   {
+    path: "users/:username",
+    loadChildren: () =>
+      import("./users-detailed/users-detailed.module").then((m) =>
+        m.UsersDetailedPageModule
+      ),
+  },
+  {
     path: "users",
     loadChildren: () =>
       import("./users/users.module").then((m) => m.UsersPageModule),

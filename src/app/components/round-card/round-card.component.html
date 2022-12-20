@@ -1,6 +1,6 @@
 <ion-card *ngIf="round">
   <ion-card-header>
-    <ion-card-subtitle *ngIf="showUser">
+    <ion-card-subtitle *ngIf="showUser && hasUsername(round)">
       {{ round.username }}
     </ion-card-subtitle>
     <ion-card-title>
