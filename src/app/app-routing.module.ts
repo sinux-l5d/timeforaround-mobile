@@ -9,9 +9,9 @@ const routes: Routes = [
       import("./users/users.module").then((m) => m.UsersPageModule),
   },
   {
-    path: "tab2",
+    path: "rounds",
     loadChildren: () =>
-      import("./tab2/tab2.module").then((m) => m.Tab2PageModule),
+      import("./rounds/rounds.module").then((m) => m.RoundsPageModule),
   },
   {
     path: "tab3",
