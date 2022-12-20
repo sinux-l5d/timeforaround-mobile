@@ -1,0 +1,16 @@
+<ion-card *ngIf="round">
+  <ion-card-header>
+    <ion-card-subtitle *ngIf="showUser">
+      {{ round.username }}
+    </ion-card-subtitle>
+    <ion-card-title>
+      {{ round.reason }}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label class="ion-text-wrap">
+      On {{ round.occurredAt | date: 'dd/MM/yyyy' }} and reported on {{ round.reportedAt | date: 'dd/MM/yyyy' }}
+    </ion-label>
+    <img [src]="'assets/' + (round.asBeenPaid ? 'beerfull' : 'beerempty') + '.png'" alt="">
+  </ion-card-content>
+</ion-card>

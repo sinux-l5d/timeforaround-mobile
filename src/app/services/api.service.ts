@@ -56,7 +56,6 @@ export class ApiService {
 
   public getAllRounds() {
     return this.get<RoundAloneDto[]>("/rounds").pipe(
-      tap((rounds) => console.log(rounds.map((r) => r.occurredAt))),
       map((rounds) =>
         // Sort by newest first
         rounds.sort((a, b) => b.occurredAt.getTime() - a.occurredAt.getTime())
