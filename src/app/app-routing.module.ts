@@ -14,9 +14,9 @@ const routes: Routes = [
       import("./rounds/rounds.module").then((m) => m.RoundsPageModule),
   },
   {
-    path: "tab3",
+    path: "profile",
     loadChildren: () =>
-      import("./tab3/tab3.module").then((m) => m.Tab3PageModule),
+      import("./profile/profile.module").then((m) => m.ProfilePageModule),
   },
   {
     path: "",
