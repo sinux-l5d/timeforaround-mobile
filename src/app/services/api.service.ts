@@ -1,5 +1,6 @@
 import { HttpClient, HttpInterceptor } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { map, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 
 export type UserDto = {
@@ -19,6 +20,10 @@ export type RoundDto = {
   occurredAt: Date;
   reportedAt: Date;
   asBeenPaid: boolean;
+};
+
+export type RoundAloneDto = RoundDto & {
+  username: string;
 };
 
 @Injectable({
@@ -47,5 +52,15 @@ export class ApiService {
 
   public getRoundOfUser(username: string, roundId: string) {
     return this.get<RoundDto>(`/users/${username}/rounds/${roundId}`);
+  }
+
+  public getAllRounds() {
+    return this.get<RoundAloneDto[]>("/rounds").pipe(
+      tap((rounds) => console.log(rounds.map((r) => r.occurredAt))),
+      map((rounds) =>
+        // Sort by newest first
+        rounds.sort((a, b) => b.occurredAt.getTime() - a.occurredAt.getTime())
+      ),
+    );
   }
 }

@@ -18,21 +18,27 @@ export class ToDateInterceptor implements HttpInterceptor {
       map((event) => {
         if (event instanceof HttpResponse) {
           const body = event.body;
-          if (body && body.occurredAt) {
-            body.occurredAt = new Date(body.occurredAt);
-          }
-          if (body && body.reportedAt) {
-            body.reportedAt = new Date(body.reportedAt);
-          }
-          if (body && body.rounds) {
-            body.rounds.forEach((round: any) => {
-              round.occurredAt = new Date(round.occurredAt);
-              round.reportedAt = new Date(round.reportedAt);
-            });
-          }
+          if (!body) return event;
+          this.parseDates(body);
         }
         return event;
       }),
     );
+  }
+
+  private parseDates(obj: any) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item: any) => this.parseDates(item));
+    } else if (typeof obj === "object") {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (key === "occurredAt" || key === "reportedAt") {
+            obj[key] = new Date(obj[key]);
+          } else {
+            this.parseDates(obj[key]);
+          }
+        }
+      }
+    }
   }
 }
