@@ -13,5 +13,6 @@
   </div>
   <img
     [src]="'assets/' + (round.asBeenPaid ? 'beerfull' : 'beerempty') + '.svg'"
+    (click)="setPaid()"
   />
 </div>

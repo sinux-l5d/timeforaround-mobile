@@ -1,4 +1,4 @@
-import { HttpClient, HttpInterceptor } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { lastValueFrom, map, shareReplay } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -44,6 +44,12 @@ export class ApiService {
     return this.http.post<T>(this.apiBaseUrl + path, body);
   }
 
+  private patch<T>(path: string, body: Record<string, unknown>) {
+    return this.http.patch<T>(this.apiBaseUrl + path, body, {
+      observe: "response",
+    });
+  }
+
   public getAllUsers() {
     return this.get<UserDto[]>("/users");
   }
@@ -87,6 +93,19 @@ export class ApiService {
       round,
     ).pipe(shareReplay());
     obs$.subscribe(console.log);
+    return obs$;
+  }
+
+  public setRoundAsPaid(
+    username: string,
+    roundId: string,
+    asBeenPaid: boolean = true,
+  ) {
+    const obs$ = this.patch<never>(
+      `/users/${username}/rounds/${roundId}`,
+      { asBeenPaid },
+    ).pipe(shareReplay());
+    obs$.subscribe();
     return obs$;
   }
 
