@@ -31,7 +31,7 @@ jobs:
         run: npm install
 
       - name: Build ionic app & copy assets
-        run: ionic capacitor build android --no-open --release --prod
+        run: ionic capacitor build android --no-open --prod
 
       - name: Generate the Android APK
         working-directory: ./android/
