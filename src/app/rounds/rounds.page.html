@@ -11,12 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="wrapper">
-    <app-round-card
-      *ngFor="let round of rounds"
-      [round]="round"
-    ></app-round-card>
-  </div>
+  <app-round-card-list [rounds]="rounds"></app-round-card-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addRound()">

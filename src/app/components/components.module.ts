@@ -5,15 +5,16 @@ import { RoundCardComponent } from "./round-card/round-card.component";
 import { IonicModule } from "@ionic/angular";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { RoundCardListComponent } from "./round-card-list/round-card-list.component";
 
 @NgModule({
-  declarations: [UserCardComponent, RoundCardComponent],
+  declarations: [UserCardComponent, RoundCardComponent, RoundCardListComponent],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
     RouterModule,
   ],
-  exports: [UserCardComponent, RoundCardComponent],
+  exports: [UserCardComponent, RoundCardComponent, RoundCardListComponent],
 })
 export class ComponentsModule {}
