@@ -16,7 +16,7 @@
   <ion-label>Your username:</ion-label>
   <ion-input type="text" placeholder="lowercase username" [(ngModel)]="username"
     [ngModelOptions]="{ updateOn: 'blur' }"> </ion-input>
-  <ion-button *ngIf="!(userExists | async)" (click)="createUser()">
+  <ion-button *ngIf="!(userExists | async) && username !== ''" (click)="createUser()">
     Create user online
   </ion-button>
 </ion-content>

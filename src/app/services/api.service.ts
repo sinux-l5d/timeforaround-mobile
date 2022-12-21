@@ -26,6 +26,8 @@ export type RoundAloneDto = RoundDto & {
   username: string;
 };
 
+export type RoundNewDto = Omit<RoundDto, "id" | "reportedAt" | "asBeenPaid">;
+
 @Injectable({
   providedIn: "root",
 })
@@ -47,6 +49,7 @@ export class ApiService {
   }
 
   public async userExists(username: string) {
+    if (!username) return false;
     const users = await lastValueFrom(this.getAllUsers());
     return users.some((user) => user.username === username);
   }
@@ -76,7 +79,18 @@ export class ApiService {
     );
   }
 
-  private defaultSortRounds<T extends RoundAloneDto[] | RoundDto[]>(rounds: T) {
+  public addRound(username: string, round: RoundNewDto) {
+    const RoundDto = { ...round, occurredAt: round.occurredAt.toISOString() };
+    console.log("New round:", RoundDto);
+    const obs$ = this.post<RoundDto>(
+      `/users/${username}/rounds`,
+      round,
+    ).pipe(shareReplay());
+    obs$.subscribe(console.log);
+    return obs$;
+  }
+
+  public defaultSortRounds<T extends RoundAloneDto[] | RoundDto[]>(rounds: T) {
     rounds.sort((a, b) => b.reportedAt.getTime() - a.reportedAt.getTime());
     return rounds;
   }
