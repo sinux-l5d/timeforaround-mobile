@@ -70,6 +70,13 @@ export class RoundsPage implements OnInit {
     await alert.present();
   }
 
+  handleRefresh(event: any) {
+    this.api.getAllRounds().subscribe((rounds) => {
+      this.rounds = rounds;
+      event.target.complete();
+    });
+  }
+
   private pushRound(round: RoundAloneDto) {
     this.rounds?.unshift(round);
   }
