@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      User ratios
-    </ion-title>
+    <ion-title> User ratios </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,11 +15,11 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let user of users">
-        <app-user-card [user]="user"></app-user-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="wrapper">
+    <app-user-card
+      class="userCard"
+      *ngFor="let user of users"
+      [user]="user"
+    ></app-user-card>
+  </div>
 </ion-content>

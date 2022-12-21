@@ -1,5 +1,5 @@
 .ratio {
-  font-size: large;
+  font-size: 2rem;
   font-weight: bold;
   color: red;
 
@@ -8,3 +8,12 @@
   }
 }
 
+h2 {
+  //end by ... if text is too long
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  //maj for the first letter
+  text-transform: capitalize;
+}

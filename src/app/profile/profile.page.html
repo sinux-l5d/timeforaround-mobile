@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Profile
-    </ion-title>
+    <ion-title> Profile </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,10 +11,19 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-label>Your username:</ion-label>
-  <ion-input type="text" placeholder="lowercase username" [(ngModel)]="username"
-    [ngModelOptions]="{ updateOn: 'blur' }"> </ion-input>
-  <ion-button *ngIf="!(userExists | async) && username !== ''" (click)="createUser()">
-    Create user online
-  </ion-button>
+  <div class="form">
+    <ion-label>Your username</ion-label>
+    <ion-input
+      type="text"
+      placeholder="lowercase username"
+      [(ngModel)]="username"
+    >
+    </ion-input>
+    <ion-button
+      *ngIf="!(userExists | async) && username !== ''"
+      (click)="createUser()"
+    >
+      Create user online
+    </ion-button>
+  </div>
 </ion-content>
