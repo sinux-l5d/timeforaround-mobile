@@ -30,19 +30,10 @@ jobs:
       - name: Install app dependencies
         run: npm install
 
-      - name: Build Ionic App
-        run: ionic build
-
-      - name: Copy Android
-        run: ionic capacitor copy android
-
-      - name: Build Android Dev APK
-        run: ionic capacitor build android --no-open
-
-      - name: Build Android Release APK
+      - name: Build ionic app & copy assets
         run: ionic capacitor build android --no-open --release --prod
 
-      - name: Generate the Android App Bundle
+      - name: Generate the Android APK
         working-directory: ./android/
         run: ./gradlew assembleDebug
 
