@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_url: "http://localhost:5243/api",
+  api_url: "https://soa3.sinux.sh/api",
 };
