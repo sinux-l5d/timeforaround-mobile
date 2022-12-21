@@ -13,5 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Profile page"></app-explore-container>
+  <ion-label>Your username:</ion-label>
+  <ion-input type="text" placeholder="lowercase username" [(ngModel)]="username"
+    [ngModelOptions]="{ updateOn: 'blur' }"> </ion-input>
+  <ion-button *ngIf="!(userExists | async)" (click)="createUser()">
+    Create user online
+  </ion-button>
 </ion-content>

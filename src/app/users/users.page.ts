@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { tap } from "rxjs";
 import { ApiService, UserDto } from "../services/api.service";
 
 @Component({
@@ -12,9 +11,18 @@ export class UsersPage implements OnInit {
 
   constructor(private api: ApiService) {}
 
-  ngOnInit() {
+  handleRefresh(event: any) {
+    this.reloadUsers((users) => event.target.complete());
+  }
+
+  reloadUsers(callback: ((users: UserDto[]) => void) | null = null) {
     this.api.getAllUsers().subscribe((users) => {
       this.users = users;
+      callback?.(users);
     });
+  }
+
+  ngOnInit() {
+    this.reloadUsers();
   }
 }

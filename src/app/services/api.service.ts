@@ -1,6 +1,6 @@
 import { HttpClient, HttpInterceptor } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, tap } from "rxjs";
+import { lastValueFrom, map, shareReplay } from "rxjs";
 import { environment } from "src/environments/environment";
 
 export type UserDto = {
@@ -46,6 +46,11 @@ export class ApiService {
     return this.get<UserDto[]>("/users");
   }
 
+  public async userExists(username: string) {
+    const users = await lastValueFrom(this.getAllUsers());
+    return users.some((user) => user.username === username);
+  }
+
   public getUserDetails(username: string) {
     return this.get<UserDetailedDto>(`/users/${username}`).pipe(
       map((user) => {
@@ -53,6 +58,12 @@ export class ApiService {
         return user;
       }),
     );
+  }
+
+  public createUser(username: string) {
+    const obs$ = this.post<UserDto>("/users", { username }).pipe(shareReplay());
+    obs$.subscribe();
+    return obs$;
   }
 
   public getRoundOfUser(username: string, roundId: string) {
