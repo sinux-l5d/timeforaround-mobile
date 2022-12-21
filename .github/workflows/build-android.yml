@@ -3,7 +3,7 @@ name: Build Android
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build:
@@ -50,5 +50,4 @@ jobs:
         uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb # tag=v3
         with:
           name: app-release
-          path: |
-            ${{ github.workspace }}/android/app/build/outputs/apk/debug/app-debug.apk
+          path: ${{ github.workspace }}/android/app/build/outputs/apk/debug/app-debug.apk

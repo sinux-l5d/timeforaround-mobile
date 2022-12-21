@@ -1,10 +1,10 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'timeforaround-mobile',
-  webDir: 'www',
-  bundledWebRuntime: false
+  appId: "sh.sinux.timeforaround",
+  appName: "Time for a round!",
+  webDir: "www",
+  bundledWebRuntime: false,
 };
 
 export default config;
