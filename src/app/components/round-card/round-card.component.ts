@@ -24,9 +24,14 @@ export class RoundCardComponent implements OnInit {
 
   setPaid() {
     if (!this.round) return;
-    if (!this.hasUsername(this.round) || this.username) return;
+
+    const username = this.hasUsername(this.round)
+      ? this.round.username
+      : this.username;
+    if (!username) return;
+
     this.api.setRoundAsPaid(
-      this.round.username ?? this.username,
+      username,
       this.round.id,
       !this.round.asBeenPaid,
     )

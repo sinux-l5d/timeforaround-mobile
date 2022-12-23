@@ -11,6 +11,9 @@ export class RoundCardListComponent implements OnInit {
   rounds?: RoundAloneDto[] | RoundDto[] | undefined;
 
   @Input()
+  username?: string = undefined;
+
+  @Input()
   showUser = true;
 
   constructor() {}
